@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-MQTTLAB.Sensor.Worker-41d9e6c0-cc21-4d85-a504-cb00e2942e4b</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MQTTLAB.Sensor.Domain\Sensor.csproj" />
+    <ProjectReference Include="..\MQTTLAB.Share.Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
