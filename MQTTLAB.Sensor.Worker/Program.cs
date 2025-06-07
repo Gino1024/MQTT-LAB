@@ -3,6 +3,7 @@ using Sensor.Infrastructrue;
 using Infrastructrue;
 using Sensor.AppService;
 using Serilog;
+using Serilog.Formatting.Json;
 
 namespace Sensor
 {
@@ -12,6 +13,21 @@ namespace Sensor
         {
             Log.Logger = new LoggerConfiguration()
                             .WriteTo.Console()
+                            .WriteTo.RabbitMQ((clientConfig, sinkConfig) =>
+                            {
+                                // RabbitMQ 連線設定
+                                clientConfig.Username = "guest";                  // 或你的帳號
+                                clientConfig.Password = "guest";                  // 或你的密碼
+                                clientConfig.VHost = "/";                   // 預設 vhost
+                                clientConfig.Hostnames = new[] { "localhost" };   // RabbitMQ 主機位址
+                                clientConfig.Port = 5672;                         // AMQP port
+                                clientConfig.Exchange = "";                       // 空字串 = 預設交換器
+                                clientConfig.RoutingKey = "MQTT-Lab-Queue";         // 路由鍵設為已存在的佇列名稱
+                                clientConfig.DeliveryMode = Serilog.Sinks.RabbitMQ.RabbitMQDeliveryMode.Durable;
+
+                                // 日誌格式（可自訂為 PlainTextFormatter、JsonFormatter 等）
+                                sinkConfig.TextFormatter = new JsonFormatter();
+                            })
                             .CreateLogger();
 
             // 建立一個 Generic Host，並且註冊我們剛剛建立的 Worker
