@@ -3,28 +3,24 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Sensor.Domain;
+using Sensor.AppService;
 
 namespace Sensor
 {
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
-        private readonly SensorDataSimulationService _sensorDataSimulationService;
+        private readonly SensorCoordinatorAppService _sensorCoordinatorAppService;
 
-        public Worker(ILogger<Worker> logger, SensorDataSimulationService sensorDataSimulationService)
+        public Worker(ILogger<Worker> logger, SensorCoordinatorAppService sensorCoordinatorAppService)
         {
             _logger = logger;
-            _sensorDataSimulationService = sensorDataSimulationService;
+            _sensorCoordinatorAppService = sensorCoordinatorAppService;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                await _sensorDataSimulationService.SimulationAndPublish();
-                await Task.Delay(1000, stoppingToken);
-            }
+            _sensorCoordinatorAppService.Simulation();
         }
     }
 }

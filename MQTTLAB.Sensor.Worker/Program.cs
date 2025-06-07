@@ -1,6 +1,7 @@
 ﻿using Sensor.Domain;
 using Sensor.Infrastructrue;
 using Infrastructrue;
+using Sensor.AppService;
 
 namespace Sensor
 {
@@ -22,10 +23,12 @@ namespace Sensor
                     services.AddSingleton<IPublisher, MqttPublisher>();
                     services.AddSingleton<ISensorFectory, SensorFectory>();
                     services.AddSingleton<ITopicResolve, MqttTopicResolve>();
-                    services.AddSingleton<SensorDataSimulationService, SensorDataSimulationService>();
-                    services.AddSingleton<TemperatureSensorDataGenerator, TemperatureSensorDataGenerator>();
-                    services.AddSingleton<WaterFlowSensorDataGenerator, WaterFlowSensorDataGenerator>();
-                    services.AddSingleton<PowerSensorDataGenerator, PowerSensorDataGenerator>();
+
+                    services.AddSingleton<SensorManager>();
+                    services.AddSingleton<TemperatureSensorDataGenerator>();
+                    services.AddSingleton<WaterFlowSensorDataGenerator>();
+                    services.AddSingleton<PowerSensorDataGenerator>();
+                    services.AddSingleton<SensorCoordinatorAppService>();
 
                     services.AddSingleton<IDictionary<SensorType, ISensorDataGenerator>>(sp =>
                     {

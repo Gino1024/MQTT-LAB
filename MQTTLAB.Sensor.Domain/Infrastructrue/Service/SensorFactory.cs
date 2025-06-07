@@ -13,7 +13,7 @@ namespace Sensor.Infrastructrue
         {
             Guid guid = Guid.NewGuid();
             SensorType type = this.RadomSensorType();
-
+            
             SensorEntity sensor = new SensorEntity(guid, type, SensorStatus.Stopped);
 
             return sensor;
