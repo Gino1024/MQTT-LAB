@@ -2,6 +2,7 @@
 using Sensor.Infrastructrue;
 using Infrastructrue;
 using Sensor.AppService;
+using Serilog;
 
 namespace Sensor
 {
@@ -9,8 +10,13 @@ namespace Sensor
     {
         public static async Task Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                            .WriteTo.Console()
+                            .CreateLogger();
+
             // 建立一個 Generic Host，並且註冊我們剛剛建立的 Worker
             var host = Host.CreateDefaultBuilder(args)
+                .UseSerilog()
                 // 如果你想要把它註冊成 Windows Service 或 Linux systemd：
                 // .UseWindowsService()   // 在 Windows 環境下改成 Windows Service
                 // .UseSystemd()         // 在 Linux 環境下改成 systemd 服務
@@ -47,6 +53,7 @@ namespace Sensor
                     // 你可以依照需求再加上 Debug、EventLog 等 provider
                 })
                 .Build();
+
 
             await host.RunAsync();
         }

@@ -1,15 +1,18 @@
 using System.Reflection.Metadata.Ecma335;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
 
 namespace Sensor.Domain
 {
     public class SensorManager
     {
+        private readonly ILogger<SensorManager> _logger;
         private IDictionary<SensorType, ISensorDataGenerator> _sensorDataGenerator;
         private IPublisher _publisher;
         private ITopicResolve _topicResolver;
-        public SensorManager(IDictionary<SensorType, ISensorDataGenerator> sensorDataGenerator, IPublisher publisher, ITopicResolve topicResolver)
+        public SensorManager(IDictionary<SensorType, ISensorDataGenerator> sensorDataGenerator, IPublisher publisher, ITopicResolve topicResolver, ILogger<SensorManager> logger)
         {
+            _logger = logger;
             _sensorDataGenerator = sensorDataGenerator;
             _publisher = publisher;
             _topicResolver = topicResolver;
@@ -36,7 +39,6 @@ namespace Sensor.Domain
 
             //發佈
             await _publisher.Publish(payload, data.Topic);
-            Console.WriteLine($"topic: {data.Topic}, payload: {payload}");
             await Task.Delay(5000);
         }
     }
