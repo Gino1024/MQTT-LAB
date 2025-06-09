@@ -4,6 +4,8 @@ using Infrastructrue.Messaging.Mqtt;
 using Sensor.AppService;
 using Serilog;
 using Serilog.Formatting.Json;
+using Infrastructure.Builder;
+using Infrastructrue.APINotifier;
 
 namespace Sensor
 {
@@ -40,11 +42,13 @@ namespace Sensor
                 {
                     // 註冊 BackgroundService
                     services.AddHostedService<Worker>();
+                    services.AddInfrastructure(hostContext.Configuration);
 
                     // 如果原本有其他依賴的 service，這裡也可以一併註冊
                     services.AddSingleton<IPublisher, MqttPublisher>();
                     services.AddSingleton<ISensorFectory, SensorFectory>();
                     services.AddSingleton<ITopicResolve, MqttTopicResolve>();
+                    services.AddSingleton<IAPINotifier, GrpcNotifier>();
 
                     services.AddSingleton<SensorManager>();
                     services.AddSingleton<TemperatureSensorDataGenerator>();

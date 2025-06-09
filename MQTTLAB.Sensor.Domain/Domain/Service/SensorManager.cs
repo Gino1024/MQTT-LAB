@@ -19,6 +19,9 @@ namespace Sensor.Domain
         }
         public async Task SimulationAndPublish(SensorEntity sensor)
         {
+            if (sensor.Status == SensorStatus.Stopped)
+                return;
+
             //建立模擬資料
             var data = new SensorData()
             {
