@@ -1,5 +1,7 @@
 using Sensor.Domain;
 using Sensor.Infrastructrue;
+using Moq;
+using Microsoft.Extensions.Logging;
 
 namespace UnitTest;
 
@@ -26,6 +28,41 @@ public class SensorContextTest
         bool isValidType =
             Enum.IsDefined(typeof(SensorType), sensor.Type);
         Assert.True(isValidType, $"Type 必須是 SensorType 的合法值，目前是 {sensor.Type}");
+    }
 
+    [Fact]
+    public async Task SimulationAndPublish_ShouldPublishCorrectPayload()
+    {
+        // Arrange
+        var mockPublisher = new Mock<IPublisher>();
+        var mockResolver = new Mock<ITopicResolve>();
+        var mockGenerator = new Mock<ISensorDataGenerator>();
+        var mockLogger = new Mock<ILogger<SensorManager>>();
+
+        var sensorType = SensorType.Temperature;
+        var sensorId = Guid.NewGuid();
+        var expectedTopic = "sensor/topic";
+
+        mockGenerator.Setup(g => g.GeneratorValue()).Returns(25.5);
+        mockResolver.Setup(r => r.Resolve(sensorId.ToString(), sensorType.ToString())).Returns(expectedTopic);
+
+        var generators = new Dictionary<SensorType, ISensorDataGenerator>
+        {
+            { sensorType, mockGenerator.Object }
+        };
+
+        var service = new SensorManager(generators, mockPublisher.Object, mockResolver.Object, mockLogger.Object);
+
+        var sensor = new SensorEntity(sensorId, sensorType, SensorStatus.Running);
+
+        // Act
+        await service.SimulationAndPublish(sensor);
+
+        // Assert
+        mockPublisher.Verify(p => p.Publish(It.Is<string>(s =>
+            s.Contains(sensorId.ToString()) &&
+            s.Contains("25.5") &&
+            s.Contains("C")
+        ), expectedTopic), Times.Once);
     }
 }
