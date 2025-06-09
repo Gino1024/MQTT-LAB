@@ -1,6 +1,6 @@
 ﻿using Sensor.Domain;
 using Sensor.Infrastructrue;
-using Infrastructrue;
+using Infrastructrue.Messaging.Mqtt;
 using Sensor.AppService;
 using Serilog;
 using Serilog.Formatting.Json;

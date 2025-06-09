@@ -1,6 +1,6 @@
 using Sensor.Domain;
 
-namespace Infrastructrue;
+namespace Infrastructrue.Messaging.Mqtt;
 
 public class MqttTopicResolve : ITopicResolve
 {

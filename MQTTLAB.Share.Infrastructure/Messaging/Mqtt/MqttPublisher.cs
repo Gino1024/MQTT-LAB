@@ -3,12 +3,12 @@ using MQTTnet;
 using MQTTnet.Packets;
 using System.Buffers;
 
-namespace Infrastructrue;
+namespace Infrastructrue.Messaging.Mqtt;
 
 public class MqttPublisher : IPublisher
 {
     public async Task Publish(string topic, string msg)
-    {  
+    {
         string brokerIP = "127.0.0.1";
         var mqttFactory = new MqttClientFactory();
         using (var mqttClient = mqttFactory.CreateMqttClient())
