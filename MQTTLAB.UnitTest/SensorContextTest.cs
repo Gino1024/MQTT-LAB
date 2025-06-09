@@ -10,8 +10,10 @@ public class SensorContextTest
     [Fact]
     public void CreateSimulateSensor_Should_ReturnNonNullEntity_WithStoppedStatus()
     {
+        var mockLogger = new Mock<ILogger<SensorFectory>>();
+
         // Arrange
-        var sensorFectory = new SensorFectory();
+        var sensorFectory = new SensorFectory(mockLogger.Object);
 
         // Act
         SensorEntity sensor = sensorFectory.CreateSimulateSensor();

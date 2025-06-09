@@ -5,8 +5,7 @@ namespace Infrastructrue.Database;
 
 public class Sensor
 {
-  public int id { get; set; }
-  public Guid key { get; set; }
+  public Guid id { get; set; }
   public int type { get; set; }
   public int status { get; set; }
   public long createdAt { get; set; }

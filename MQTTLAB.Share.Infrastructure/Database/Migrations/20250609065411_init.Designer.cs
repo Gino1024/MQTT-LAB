@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Database.Migrations
 {
     [DbContext(typeof(MQTTLABDbContext))]
-    [Migration("20250609061111_INIT")]
-    partial class INIT
+    [Migration("20250609065411_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,18 +27,12 @@ namespace Infrastructure.Database.Migrations
 
             modelBuilder.Entity("Infrastructrue.Database.Sensor", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+                        .HasColumnType("uuid");
 
                     b.Property<long>("createdAt")
                         .HasColumnType("bigint");
-
-                    b.Property<Guid>("key")
-                        .HasMaxLength(32)
-                        .HasColumnType("uuid");
 
                     b.Property<int>("status")
                         .HasMaxLength(1)
@@ -49,9 +43,6 @@ namespace Infrastructure.Database.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("id");
-
-                    b.HasIndex("key")
-                        .IsUnique();
 
                     b.ToTable("t_sensor", (string)null);
                 });

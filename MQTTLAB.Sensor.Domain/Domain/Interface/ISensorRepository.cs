@@ -2,7 +2,8 @@ namespace Sensor.Domain
 {
   public interface ISensorRepository
   {
-    public bool Save(SensorEntity sensor);
-    public SensorEntity GetByID(string id);
+    public Task<SensorEntity> GetByID(Guid id);
+    public Task Insert(SensorEntity instance);
+    public void Update(SensorEntity instance);
   }
 }

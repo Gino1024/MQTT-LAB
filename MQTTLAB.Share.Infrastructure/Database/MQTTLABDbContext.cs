@@ -4,7 +4,7 @@ namespace Infrastructrue.Database;
 
 public class MQTTLABDbContext : DbContext
 {
-  public DbSet<Sensor> Products { get; set; }
+  public DbSet<Sensor> Sensors { get; set; }
 
   public MQTTLABDbContext(DbContextOptions<MQTTLABDbContext> options)
       : base(options)
@@ -21,11 +21,6 @@ public class MQTTLABDbContext : DbContext
       entity.ToTable("t_sensor");
 
       entity.HasKey(e => e.id);
-      entity.Property(e => e.id).ValueGeneratedOnAdd();
-
-      entity.Property(e => e.key)
-            .IsRequired()
-            .HasMaxLength(32);
 
       entity.Property(e => e.type)
             .IsRequired()
@@ -34,8 +29,6 @@ public class MQTTLABDbContext : DbContext
       entity.Property(e => e.status)
           .IsRequired()
           .HasMaxLength(1);
-
-      entity.HasIndex(i => i.key).IsUnique();
     });
   }
 

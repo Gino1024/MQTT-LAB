@@ -1,9 +1,15 @@
+using Microsoft.Extensions.Logging;
 using Sensor.Domain;
 
 namespace Sensor.Infrastructrue
 {
     public class SensorFectory : ISensorFectory
     {
+        private readonly ILogger<SensorFectory> _logger;
+        public SensorFectory(ILogger<SensorFectory> logger)
+        {
+            _logger = logger;
+        }
         /// <summary>
         /// 取得模擬Sensor
         /// </summary>
@@ -13,8 +19,9 @@ namespace Sensor.Infrastructrue
         {
             Guid guid = Guid.NewGuid();
             SensorType type = this.RadomSensorType();
-            
+
             SensorEntity sensor = new SensorEntity(guid, type, SensorStatus.Stopped);
+            _logger.LogInformation($"created {sensor.Type}, {sensor.Id}");
 
             return sensor;
         }

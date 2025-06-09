@@ -24,18 +24,12 @@ namespace Infrastructure.Database.Migrations
 
             modelBuilder.Entity("Infrastructrue.Database.Sensor", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+                        .HasColumnType("uuid");
 
                     b.Property<long>("createdAt")
                         .HasColumnType("bigint");
-
-                    b.Property<Guid>("key")
-                        .HasMaxLength(32)
-                        .HasColumnType("uuid");
 
                     b.Property<int>("status")
                         .HasMaxLength(1)
@@ -46,9 +40,6 @@ namespace Infrastructure.Database.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("id");
-
-                    b.HasIndex("key")
-                        .IsUnique();
 
                     b.ToTable("t_sensor", (string)null);
                 });
