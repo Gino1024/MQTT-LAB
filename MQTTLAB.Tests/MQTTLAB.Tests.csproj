@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MQTTLAB.Sensor.Domain\Sensor.csproj" />
+    <ProjectReference Include="..\MQTTLAB.Sensor.Domain\MQTTLAB.Sensor.Domain.csproj" />
   </ItemGroup>
 
 </Project>

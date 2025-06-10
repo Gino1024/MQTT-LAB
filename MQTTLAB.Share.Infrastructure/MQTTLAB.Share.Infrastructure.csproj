@@ -1,10 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\MQTTLAB.Sensor.Domain\Sensor.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="MQTTnet" Version="5.0.1.1416" />
     <PackageReference Include="Google.Protobuf" Version="3.31.1" />
     <PackageReference Include="Grpc.Net.Client" Version="2.71.0" />
     <PackageReference Include="Grpc.Net.ClientFactory" Version="2.71.0" />
@@ -16,6 +13,9 @@
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="./APINotifier/Grpc/Protos/sensor.proto" GrpcServices="Client" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MQTTLAB.Sensor.Domain\MQTTLAB.Sensor.Domain.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>

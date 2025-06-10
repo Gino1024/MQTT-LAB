@@ -11,6 +11,7 @@ namespace Sensor.Domain
         public Guid Id { get; set; }
         public SensorType? Type { get; set; }
         public SensorStatus? Status { get; set; }
+        public long createdAt { get; set; }
 
         public void Active() => this.Status = SensorStatus.Running;
         public void Deactive() => this.Status = SensorStatus.Stopped;

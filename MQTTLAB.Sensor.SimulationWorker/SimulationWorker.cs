@@ -5,14 +5,14 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Sensor.AppService;
 
-namespace Sensor
+namespace Sensor.Worker
 {
-    public class Worker : BackgroundService
+    public class SimulationWorker : BackgroundService
     {
-        private readonly ILogger<Worker> _logger;
+        private readonly ILogger<SimulationWorker> _logger;
         private readonly SensorCoordinatorAppService _sensorCoordinatorAppService;
 
-        public Worker(ILogger<Worker> logger, SensorCoordinatorAppService sensorCoordinatorAppService)
+        public SimulationWorker(ILogger<SimulationWorker> logger, SensorCoordinatorAppService sensorCoordinatorAppService)
         {
             _logger = logger;
             _sensorCoordinatorAppService = sensorCoordinatorAppService;

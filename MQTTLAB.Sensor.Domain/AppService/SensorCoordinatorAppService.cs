@@ -30,7 +30,7 @@ public class SensorCoordinatorAppService
 
         sensor.Active();
         //更新Server
-
+        await _apiNotifier.UpdateStatusAsync(sensor);
         //透過Manger執行傳送模擬資料
         while (true && sensor.Status == SensorStatus.Running)
         {

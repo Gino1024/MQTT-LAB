@@ -1,8 +1,10 @@
 using Infrastructrue.Database;
+using Infrastructrue.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MQTTLAB.gRPC.Controller;
+using Sensor.Domain;
 
 namespace Infrastructure.Builder
 {
@@ -14,8 +16,11 @@ namespace Infrastructure.Builder
       services.AddDbContext<MQTTLABDbContext>(options =>
       options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
+      services.AddScoped<IUnitOfWork, UnitOfWork>();
+      services.AddScoped<ISensorRepository, SensorRepository>();
+
       // 注入 gRPC Client
-      services.AddGrpcClient<Greeter.GreeterClient>(options =>
+      services.AddGrpcClient<SensorGrpc.SensorGrpcClient>(options =>
       {
         options.Address = new Uri(configuration["Grpc:SensorService"]);
       });

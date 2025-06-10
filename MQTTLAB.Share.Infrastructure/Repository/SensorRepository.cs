@@ -8,6 +8,16 @@ public class SensorRepository : ISensorRepository
   {
     _mqttlabDbContext = mqttlabDbContext;
   }
+
+  public void UpdateStatus(SensorEntity instance)
+  {
+    var sensor = new Infrastructrue.Database.Sensor();
+    sensor.id = instance.Id;
+    sensor.status = (int)instance.Status;
+    _mqttlabDbContext.Attach(sensor);
+    _mqttlabDbContext.Entry(sensor).Property(x => x.status).IsModified = true;
+  }
+
   public async Task<SensorEntity> GetByID(Guid id)
   {
     var data = await _mqttlabDbContext.Sensors.FindAsync(id);
@@ -22,6 +32,7 @@ public class SensorRepository : ISensorRepository
     sensor.id = instance.Id;
     sensor.type = (int)instance.Type;
     sensor.status = (int)instance.Status;
+    sensor.createdAt = instance.createdAt;
 
     await _mqttlabDbContext.Sensors.AddAsync(sensor);
   }

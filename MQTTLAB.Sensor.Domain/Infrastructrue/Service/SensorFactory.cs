@@ -21,7 +21,8 @@ namespace Sensor.Infrastructrue
             SensorType type = this.RadomSensorType();
 
             SensorEntity sensor = new SensorEntity(guid, type, SensorStatus.Stopped);
-            _logger.LogInformation($"created {sensor.Type}, {sensor.Id}");
+            sensor.createdAt = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
+            _logger.LogInformation($"created [{sensor.createdAt}] {sensor.Type}, {sensor.Id}");
 
             return sensor;
         }

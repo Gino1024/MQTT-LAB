@@ -7,7 +7,7 @@ using Serilog.Formatting.Json;
 using Infrastructure.Builder;
 using Infrastructrue.APINotifier;
 
-namespace Sensor
+namespace Sensor.Worker
 {
     public class Program
     {
@@ -41,7 +41,7 @@ namespace Sensor
                 .ConfigureServices((hostContext, services) =>
                 {
                     // 註冊 BackgroundService
-                    services.AddHostedService<Worker>();
+                    services.AddHostedService<SimulationWorker>();
                     services.AddInfrastructure(hostContext.Configuration);
 
                     // 如果原本有其他依賴的 service，這裡也可以一併註冊

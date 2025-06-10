@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-MQTTLAB.Sensor.Worker-41d9e6c0-cc21-4d85-a504-cb00e2942e4b</UserSecretsId>
+    <UserSecretsId>dotnet-MQTTLAB.Sensor.SimulationWorker-41d9e6c0-cc21-4d85-a504-cb00e2942e4b</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MQTTLAB.Sensor.Domain\Sensor.csproj" />
-    <ProjectReference Include="..\MQTTLAB.Share.Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\MQTTLAB.Sensor.Domain\MQTTLAB.Sensor.Domain.csproj" />
+    <ProjectReference Include="..\MQTTLAB.Share.Infrastructure\MQTTLAB.Share.Infrastructure.csproj" />
   </ItemGroup>
 </Project>
