@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQTTLAB.Tests", "MQTTLAB.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQTTLAB.Sensor.SimulationWorker", "MQTTLAB.Sensor.SimulationWorker\MQTTLAB.Sensor.SimulationWorker.csproj", "{29658AAE-E0C2-4747-90D8-6189DC6892E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQTTLAB.gRPC.Controller", "MQTTLAB.gRPC.Controller\MQTTLAB.gRPC.Controller.csproj", "{F2AC1EE5-F6E5-4025-9978-B0747BD20D3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQTTLAB.SensorAPI", "MQTTLAB.SensorAPI\MQTTLAB.SensorAPI.csproj", "{F2AC1EE5-F6E5-4025-9978-B0747BD20D3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
