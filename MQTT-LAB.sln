@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQTTLAB.Sensor.SimulationWo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQTTLAB.SensorAPI", "MQTTLAB.SensorAPI\MQTTLAB.SensorAPI.csproj", "{F2AC1EE5-F6E5-4025-9978-B0747BD20D3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQTTLAB.Sensor.GatewayWorker", "MQTTLAB.Sensor.GatewayWorker\MQTTLAB.Sensor.GatewayWorker.csproj", "{007BFEEB-93EF-4A9E-B13D-C061E0651535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQTTLAB.Share.LogWoker", "MQTTLAB.Share.LogWoker\MQTTLAB.Share.LogWoker.csproj", "{1268D433-98A7-41FB-A19D-3FF4AAD486BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +46,13 @@ Global
 		{F2AC1EE5-F6E5-4025-9978-B0747BD20D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2AC1EE5-F6E5-4025-9978-B0747BD20D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2AC1EE5-F6E5-4025-9978-B0747BD20D3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{007BFEEB-93EF-4A9E-B13D-C061E0651535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007BFEEB-93EF-4A9E-B13D-C061E0651535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007BFEEB-93EF-4A9E-B13D-C061E0651535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007BFEEB-93EF-4A9E-B13D-C061E0651535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1268D433-98A7-41FB-A19D-3FF4AAD486BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1268D433-98A7-41FB-A19D-3FF4AAD486BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1268D433-98A7-41FB-A19D-3FF4AAD486BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1268D433-98A7-41FB-A19D-3FF4AAD486BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
