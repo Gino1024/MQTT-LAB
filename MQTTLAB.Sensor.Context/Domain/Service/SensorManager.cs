@@ -25,7 +25,7 @@ namespace Sensor.Domain
             //建立模擬資料
             var data = new SensorData()
             {
-                Id = sensor.Id,
+                SensorID = sensor.Id,
                 Timestamp = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds(),
                 Unit = sensor.Type switch
                 {

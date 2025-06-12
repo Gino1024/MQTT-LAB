@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MQTTLAB.Sensor.Domain\MQTTLAB.Sensor.Domain.csproj" />
+    <ProjectReference Include="..\MQTTLAB.Sensor.Context\MQTTLAB.Sensor.Context.csproj" />
     <ProjectReference Include="..\MQTTLAB.Share.Infrastructure\MQTTLAB.Share.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>

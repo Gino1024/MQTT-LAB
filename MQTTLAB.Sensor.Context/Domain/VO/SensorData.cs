@@ -4,8 +4,8 @@ namespace Sensor.Domain
 {
     public class SensorData
     {
-        [JsonPropertyName("id")]
-        public Guid Id { get; set; }
+        [JsonPropertyName("sensor_id")]
+        public Guid SensorID { get; set; }
         [JsonPropertyName("timestamp")]
         public long Timestamp { get; set; }
         [JsonPropertyName("value")]

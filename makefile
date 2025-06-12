@@ -1,7 +1,7 @@
 # Makefile
 NAME ?= 
-PROJECT_PATH=./MQTTLAB.Share.Infrastructure/Infrastructure.csproj
-STARTUP_PATH=./MQTTLAB.gRPC.Controller/MQTTLAB.gRPC.Controller.csproj
+PROJECT_PATH=./MQTTLAB.Share.Infrastructure/MQTTLAB.Share.Infrastructure.csproj
+STARTUP_PATH=./MQTTLAB.SensorAPI/MQTTLAB.SensorAPI.csproj
 CONTEXT=MQTTLABDbContext
 OUTPUT_DIR=./Database/Migrations
 

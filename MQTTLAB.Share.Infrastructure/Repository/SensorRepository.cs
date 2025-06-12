@@ -32,7 +32,7 @@ public class SensorRepository : ISensorRepository
     sensor.id = instance.Id;
     sensor.type = (int)instance.Type;
     sensor.status = (int)instance.Status;
-    sensor.createdAt = instance.createdAt;
+    sensor.created_at = instance.createdAt;
 
     await _mqttlabDbContext.Sensors.AddAsync(sensor);
   }

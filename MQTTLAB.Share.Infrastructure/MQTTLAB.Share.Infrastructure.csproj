@@ -15,7 +15,7 @@
     <Protobuf Include="./APINotifier/Grpc/Protos/sensor.proto" GrpcServices="Client" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MQTTLAB.Sensor.Domain\MQTTLAB.Sensor.Domain.csproj" />
+    <ProjectReference Include="..\MQTTLAB.Sensor.Context\MQTTLAB.Sensor.Context.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
