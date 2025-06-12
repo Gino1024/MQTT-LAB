@@ -3,17 +3,20 @@ using System;
 using Infrastructrue.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Infrastructure.Database.Migrations
+namespace MQTTLAB.Share.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(MQTTLABDbContext))]
-    partial class MQTTLABDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250612053103_add_t_sensor_data")]
+    partial class add_t_sensor_data
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

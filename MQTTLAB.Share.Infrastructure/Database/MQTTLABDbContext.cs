@@ -15,7 +15,6 @@ public class MQTTLABDbContext : DbContext
   {
     base.OnModelCreating(modelBuilder);
 
-    // 🔹 User 設定
     modelBuilder.Entity<Sensor>(entity =>
     {
       entity.ToTable("t_sensor");
@@ -29,6 +28,20 @@ public class MQTTLABDbContext : DbContext
       entity.Property(e => e.status)
           .IsRequired()
           .HasMaxLength(1);
+
+      entity.HasMany(e => e.SensorDatas)
+            .WithOne(e => e.sensor)
+            .HasForeignKey(e => e.sensor_id)
+            .HasPrincipalKey(e => e.id);
+    });
+
+    modelBuilder.Entity<SensorData>(entity =>
+    {
+      entity.ToTable("t_sensor_data");
+
+      entity.HasKey(e => e.id);
+      entity.Property(e => e.sensor_id)
+            .IsRequired();
     });
   }
 
