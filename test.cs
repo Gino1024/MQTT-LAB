@@ -57,7 +57,9 @@ var subscribe = async (CancellationToken cts) =>
 
         mqttClient.ApplicationMessageReceivedAsync += e =>
         {
+            var topic = e.ApplicationMessage.Topic;
             var payload = e.ApplicationMessage?.Payload == null ? null : Encoding.UTF8.GetString(e.ApplicationMessage?.Payload.ToArray() ?? new byte[0]);
+            //handler(topic, payload);
 
             Console.WriteLine($"Received application message: {payload}");
             return Task.CompletedTask;

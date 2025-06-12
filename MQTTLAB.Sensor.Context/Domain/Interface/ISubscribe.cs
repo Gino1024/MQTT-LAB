@@ -2,6 +2,7 @@ namespace Sensor.Domain
 {
     public interface ISubscribe
     {
-        public Task Subscribe(string topic, string msg);
+        public Task ConnectAsync();
+        public Task SubscribeAsync(string topic, Func<string, Task> handler);
     }
 }

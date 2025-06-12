@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Sensor.Domain
 {
-    public class SensorData
+    public class SensorDataVO
     {
         [JsonPropertyName("sensor_id")]
         public Guid SensorID { get; set; }
@@ -12,7 +12,5 @@ namespace Sensor.Domain
         public double Value { get; set; }
         [JsonPropertyName("unit")]
         public string Unit { get; set; }
-        [JsonIgnore]
-        public string Topic { get; set; }
     }
 }

@@ -20,7 +20,7 @@ public class LogWorker : BackgroundService
   {
     while (!stoppingToken.IsCancellationRequested)
     {
-      Console.WriteLine("Running");
+      _logger.LogDebug("Running");
       await Task.Delay(2000);
     }
   }

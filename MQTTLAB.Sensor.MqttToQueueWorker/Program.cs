@@ -45,6 +45,9 @@ namespace Sensor.GateworkWorker
           {
             // 註冊 BackgroundService
             services.AddHostedService<GatewayWorker>();
+            services.AddDBService(hostContext.Configuration, ServiceLifetime.Singleton);
+            services.AddGrpcService(hostContext.Configuration);
+            services.AddSensorContextService(hostContext.Configuration);
           })
           .ConfigureLogging(logging =>
           {

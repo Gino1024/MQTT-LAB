@@ -5,6 +5,7 @@ namespace Infrastructrue.Database;
 public class MQTTLABDbContext : DbContext
 {
   public DbSet<Sensor> Sensors { get; set; }
+  public DbSet<SensorData> SensorDatas { get; set; }
 
   public MQTTLABDbContext(DbContextOptions<MQTTLABDbContext> options)
       : base(options)

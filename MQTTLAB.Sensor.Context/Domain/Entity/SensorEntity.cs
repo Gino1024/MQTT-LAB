@@ -2,6 +2,9 @@ namespace Sensor.Domain
 {
     public class SensorEntity
     {
+        public SensorEntity()
+        {
+        }
         public SensorEntity(Guid id, SensorType type, SensorStatus status)
         {
             this.Id = id;
@@ -12,6 +15,7 @@ namespace Sensor.Domain
         public SensorType? Type { get; set; }
         public SensorStatus? Status { get; set; }
         public long createdAt { get; set; }
+        public string Topic { get; set; }
 
         public void Active() => this.Status = SensorStatus.Running;
         public void Deactive() => this.Status = SensorStatus.Stopped;

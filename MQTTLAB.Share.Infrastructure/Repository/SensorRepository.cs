@@ -1,4 +1,5 @@
 using Infrastructrue.Database;
+using Microsoft.EntityFrameworkCore;
 using Sensor.Domain;
 public class SensorRepository : ISensorRepository
 {
@@ -26,23 +27,30 @@ public class SensorRepository : ISensorRepository
     return sensor;
   }
 
-  public async Task Insert(SensorEntity instance)
+  public async Task Save(SensorEntity instance)
   {
     var sensor = new Infrastructrue.Database.Sensor();
     sensor.id = instance.Id;
     sensor.type = (int)instance.Type;
     sensor.status = (int)instance.Status;
+    sensor.topic = instance.Topic;
     sensor.created_at = instance.createdAt;
 
     await _mqttlabDbContext.Sensors.AddAsync(sensor);
   }
-  public void Update(SensorEntity instance)
-  {
-    var sensor = new Infrastructrue.Database.Sensor();
-    sensor.id = instance.Id;
-    sensor.type = (int)instance.Type;
-    sensor.status = (int)instance.Status;
 
-    _mqttlabDbContext.Sensors.Update(sensor);
+  public async Task<List<SensorEntity>> GetActiveSensors()
+  {
+    var sensors = await _mqttlabDbContext.Sensors.Where(m => m.status == (int)SensorStatus.Running).ToListAsync();
+    var sensorEntities = sensors.Select(m => new SensorEntity()
+    {
+      Id = m.id,
+      Type = (SensorType)m.type,
+      Status = (SensorStatus)m.status,
+      Topic = m.topic,
+      createdAt = m.created_at,
+    }).ToList();
+
+    return sensorEntities;
   }
 }

@@ -6,9 +6,11 @@ namespace Sensor.Infrastructrue
     public class SensorFectory : ISensorFectory
     {
         private readonly ILogger<SensorFectory> _logger;
-        public SensorFectory(ILogger<SensorFectory> logger)
+        private readonly ITopicResolve _topicResolve;
+        public SensorFectory(ILogger<SensorFectory> logger, ITopicResolve topicResolve)
         {
             _logger = logger;
+            _topicResolve = topicResolve;
         }
         /// <summary>
         /// 取得模擬Sensor
@@ -21,8 +23,9 @@ namespace Sensor.Infrastructrue
             SensorType type = this.RadomSensorType();
 
             SensorEntity sensor = new SensorEntity(guid, type, SensorStatus.Stopped);
+            sensor.Topic = _topicResolve.Resolve(sensor.Id.ToString(), sensor.Type.ToString());
             sensor.createdAt = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
-            _logger.LogInformation($"created [{sensor.createdAt}] {sensor.Type}, {sensor.Id}");
+            _logger.LogInformation($"created [{sensor.createdAt}] {sensor.Type}, {sensor.Id}, topic: {sensor.Topic}");
 
             return sensor;
         }

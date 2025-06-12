@@ -17,6 +17,7 @@ message SensorRegisterRequest {
   int64 type = 2;
   int64 status = 3;
   int64 createdAt = 4;
+  string topic = 5;
 }
 
 message SensorStatusUpdateRequest {

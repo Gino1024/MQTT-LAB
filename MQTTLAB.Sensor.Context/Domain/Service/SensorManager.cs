@@ -23,7 +23,7 @@ namespace Sensor.Domain
                 return;
 
             //建立模擬資料
-            var data = new SensorData()
+            var data = new SensorDataVO()
             {
                 SensorID = sensor.Id,
                 Timestamp = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds(),
@@ -35,13 +35,11 @@ namespace Sensor.Domain
                     _ => ""
                 },
                 Value = _sensorDataGenerator[sensor.Type.Value].GeneratorValue(),
-                Topic = _topicResolver.Resolve(sensor.Id.ToString(), sensor.Type.ToString())
             };
-
+            string topic = _topicResolver.Resolve(sensor.Id.ToString(), sensor.Type.ToString());
             var payload = JsonSerializer.Serialize(data);
-
             //發佈
-            await _publisher.Publish(payload, data.Topic);
+            await _publisher.Publish(topic, payload);
             await Task.Delay(5000);
         }
     }

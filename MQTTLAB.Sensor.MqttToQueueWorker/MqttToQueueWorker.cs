@@ -10,19 +10,17 @@ namespace Sensor.GateworkWorker;
 public class GatewayWorker : BackgroundService
 {
   private readonly ILogger<GatewayWorker> _logger;
+  private readonly SensorCoordinatorAppService _sensorCoordinatorAppService;
 
-  public GatewayWorker(ILogger<GatewayWorker> logger)
+  public GatewayWorker(ILogger<GatewayWorker> logger, SensorCoordinatorAppService sensorCoordinatorAppService)
   {
+    _sensorCoordinatorAppService = sensorCoordinatorAppService;
     _logger = logger;
   }
 
   protected override async Task ExecuteAsync(CancellationToken stoppingToken)
   {
-    while (!stoppingToken.IsCancellationRequested)
-    {
-      Console.WriteLine("Running");
-      await Task.Delay(2000);
-    }
+    await _sensorCoordinatorAppService.SubscribeSimulation();
   }
 
   public override async Task StopAsync(CancellationToken stoppingToken)

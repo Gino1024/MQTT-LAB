@@ -3,17 +3,20 @@ using System;
 using Infrastructrue.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Infrastructure.Database.Migrations
+namespace MQTTLAB.Share.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(MQTTLABDbContext))]
-    partial class MQTTLABDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250612091622_edit_sensors")]
+    partial class edit_sensors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,10 +38,6 @@ namespace Infrastructure.Database.Migrations
                         .HasMaxLength(1)
                         .HasColumnType("integer");
 
-                    b.Property<string>("topic")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("type")
                         .HasMaxLength(1)
                         .HasColumnType("integer");
@@ -59,6 +58,10 @@ namespace Infrastructure.Database.Migrations
 
                     b.Property<Guid>("sensor_id")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("topic")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("unit")
                         .IsRequired()

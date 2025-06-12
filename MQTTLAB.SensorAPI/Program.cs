@@ -5,7 +5,8 @@ using Infrastructure.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddDBService(builder.Configuration, ServiceLifetime.Scoped);
+builder.Services.AddGrpcService(builder.Configuration);
 
 // Add services to the container.
 builder.Services.AddGrpc();

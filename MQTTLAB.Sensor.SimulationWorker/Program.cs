@@ -42,29 +42,11 @@ namespace Sensor.Worker
                 {
                     // 註冊 BackgroundService
                     services.AddHostedService<SimulationWorker>();
-                    services.AddInfrastructure(hostContext.Configuration);
+                    services.AddDBService(hostContext.Configuration, ServiceLifetime.Singleton);
+                    services.AddGrpcService(hostContext.Configuration);
+                    services.AddSensorContextService(hostContext.Configuration);
 
-                    // 如果原本有其他依賴的 service，這裡也可以一併註冊
-                    services.AddSingleton<IPublisher, MqttPublisher>();
-                    services.AddSingleton<ISensorFectory, SensorFectory>();
-                    services.AddSingleton<ITopicResolve, MqttTopicResolve>();
-                    services.AddSingleton<IAPINotifier, GrpcNotifier>();
 
-                    services.AddSingleton<SensorManager>();
-                    services.AddSingleton<TemperatureSensorDataGenerator>();
-                    services.AddSingleton<WaterFlowSensorDataGenerator>();
-                    services.AddSingleton<PowerSensorDataGenerator>();
-                    services.AddSingleton<SensorCoordinatorAppService>();
-
-                    services.AddSingleton<IDictionary<SensorType, ISensorDataGenerator>>(sp =>
-                    {
-                        return new Dictionary<SensorType, ISensorDataGenerator>
-                        {
-                            { SensorType.Temperature, sp.GetRequiredService<TemperatureSensorDataGenerator>() },
-                            { SensorType.WaterFlow,   sp.GetRequiredService<WaterFlowSensorDataGenerator>() },
-                            { SensorType.Power,       sp.GetRequiredService<PowerSensorDataGenerator>() }
-                        };
-                    });
                 })
                 .ConfigureLogging(logging =>
                 {

@@ -14,7 +14,14 @@ namespace Infrastructrue.APINotifier
 
     public async Task<string> NotifySensorRegisterAsync(SensorEntity sensor)
     {
-      var request = new SensorRegisterRequest() { Id = sensor.Id.ToString(), Type = (int)sensor.Type, Status = (int)sensor.Status, CreatedAt = sensor.createdAt };
+      var request = new SensorRegisterRequest()
+      {
+        Id = sensor.Id.ToString(),
+        Type = (int)sensor.Type,
+        Status = (int)sensor.Status,
+        CreatedAt = sensor.createdAt,
+        Topic = sensor.Topic
+      };
       var response = await _client.RegisterAsync(request);
       return response.Message;
     }
